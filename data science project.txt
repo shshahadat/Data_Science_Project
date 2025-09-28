@@ -1,0 +1,57 @@
+# importing csv file 
+middataset <- read.csv("D:/midtermdataset.csv",header=TRUE,sep=",")
+middataset
+
+summary(middataset)
+
+# delete Na values row
+deleteNa <- na.omit(middataset)
+# counting null values for missing value handling
+colSums(is.na(middataset))
+
+#Age mean
+middataset$weight.kg.[is.na(middataset$Age)] = mean(middataset$Age,  na.rm = TRUE)
+# Age median
+middataset$Age[is.na(middataset$Age)] = median(middataset$Age,  na.rm = TRUE)
+# Age mode
+library(DescTools)
+middataset$Age[is.na(middataset$Age)] <- Mode(middataset$Age,  na.rm = TRUE)
+
+# weight mean
+middataset$weight.kg.[is.na(middataset$weight.kg.)] <- mean(middataset$weight.kg.,  na.rm = TRUE)
+
+# weight median
+middataset$weight.kg.[is.na(middataset$weight.kg.)] <- median(middataset$weight.kg.,  na.rm = TRUE)
+# weight mode
+library(DescTools)
+middataset$weight.kg.[is.na(middataset$weight.kg.)] <- Mode(middataset$weight.kg.,  na.rm = TRUE)
+
+
+
+# delivery number mode
+library(DescTools)
+middataset$Delivery_number[is.na(middataset$Delivery_number)] <- Mode(middataset$Delivery_number,  na.rm = TRUE)
+
+
+# delivery time mode
+library(DescTools)
+middataset$Delivery_time[is.na(middataset$Delivery_time)] <- Mode(middataset$Delivery_time,  na.rm = TRUE)
+
+
+
+# caesarian problem
+
+library(DescTools)
+middataset$Caesarian[is.na(middataset$Caesarian)] <- Mode(middataset$Caesarian,  na.rm = TRUE)
+
+
+# data visualization
+ageboxplot<-boxplot(middataset$Age)
+Outlier<-ageboxplot$out
+Outlier
+
+weightboxplot<-boxplot(middataset$weight.kg.)
+Outliers<-weightboxplot$out
+Outliers
+
+
